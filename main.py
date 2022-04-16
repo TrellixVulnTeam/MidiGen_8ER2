@@ -3,7 +3,7 @@ import argparse
 parser = argparse.ArgumentParser(description='Enter file name')
 parser.add_argument('-f')
 args = parser.parse_args()
-file_tr = 'file.txt'
+file_tr = '/Users/ashoksubramaniam/Desktop/MidiGen-main/file.txt1'
 if args.f != None:
     file_tr = args.f
 
@@ -24,7 +24,6 @@ def nextpass(a, b, k):
 
     diff = note-48
 
-
     from midiutil import MIDIFile
 
     c = str(data[0])
@@ -33,9 +32,7 @@ def nextpass(a, b, k):
     scales = {
             'major' : {"m":41, "p":43, "d":45, "n":47, "S":48, "R":50, "G":52, "M":53, "P":55, "D":57, "N":59, "S^":60, "R^":62, "G^":64, "M^":65, "P^":67},
             'mayamalavagoulai' : {"m":41, "p":43, "d":45, "n":46, "S":48, "R":49, "G":52, "M":53, "P":55, "D":56, "N":59, "S^":60, "R^":61, "G^":64, "M^":65, "P^":67},
-            'mohanam' : {"p":43, "d":45, "S":48, "R":50, "G":52, "P":55, "D":57, "S^":60, "R^":62, "G^":64, "P^":67},
-            'hamsadwani' : {"p":43, "d":45, "S":48, "R":50, "G":52, "P":55, "N":59, "S^":60, "R^":62, "G^":64, "P^":67},
-            'kanada' : {"m":41, "p":43, "d":45, "n":47, "S":48, "R":50, "G":52, "M":53, "P":55, "D":57, "N":59, "S^":60, "R^":62, "G^":64, "M^":65, "P^":67}
+            'mohanam' : {"p":43, "d":45, "S":48, "R":50, "G":52, "P":55, "D":57, "S^":60, "R^":62, "G^":64, "P^":67}
         }
 
     for note in scales[c]:
@@ -51,11 +48,11 @@ def nextpass(a, b, k):
     MIDIs = MIDIFile(1)
     MIDIs.addTempo(track,time, tempo)
     if k == "violin":
-        MIDIs.addProgramChange(0, 0, 0, 42)
-    elif k == "flute":
-        MIDIs.addProgramChange(0, 0, 0, 74)
-    elif k == "recorder":
-        MIDIs.addProgramChange(0, 0, 0, 54)
+        MIDIs.addProgramChange(0, 0, 0, 41)
+    elif k == "sitar":
+        MIDIs.addProgramChange(0, 0, 0, 105)
+    elif k == "harmonica":
+        MIDIs.addProgramChange(0, 0, 0, 112)
     else:
         pass
 
@@ -81,7 +78,7 @@ def nextpass(a, b, k):
 
 
 
-    with open("output.mid", "wb") as opf:
+    with open("./output.mid", "wb") as opf:
         MIDIs.writeFile(opf)
     print("--------")
     print("DONE ==> check output.mid")
@@ -91,7 +88,7 @@ def getInput():
     k = input("Enter Scale Root: ")
     k = str(k).upper()
     r = input("Enter Octave: ")
-    types = input("Choose instrument (violin, flute, recorder, or piano): ").lower()
+    types = input("Choose instrument (violin, sitar, harmonica or piano): ").lower()
     print("--------")
     if str(k).upper() in ["C", "D", "E", "F", "G", "A", "B"] and r.isnumeric():
         nextpass(k, r, types)
