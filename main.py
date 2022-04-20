@@ -53,9 +53,9 @@ def nextpass(a, b, k):
     if k == "violin":
         MIDIs.addProgramChange(0, 0, 0, 42)
     elif k == "flute":
-        MIDIs.addProgramChange(0, 0, 0, 74)
-    elif k == "recorder":
         MIDIs.addProgramChange(0, 0, 0, 54)
+    elif k == "recorder":
+        MIDIs.addProgramChange(0, 0, 0, 74)
     else:
         pass
 
@@ -73,11 +73,29 @@ def nextpass(a, b, k):
                         while data[iter] == '_':
                             iter += 1
                             temp_duration += 1
-                    prevnote = scales[c][data[val]]
-                    MIDIs.addNote(track, channel, prevnote, time, temp_duration, volume)
-                    time += temp_duration
+                    if data[val] == '[':
+                        kls = []
+                        iter = val
+                        while data[iter] != ']':
+                            if data[iter] != ']' and data[iter] != '[':
+                                kls.append(data[iter])
+                                data[iter] = "exempt"
+                            iter += 1
+                        iter += 1
+                        val = iter
+                        MIDIs.addTempo(track,time,tempo*len(kls))
+                        for elem in kls:
+                            prevnote = scales[c][elem]
+                            MIDIs.addNote(track, channel, prevnote, time, temp_duration, volume)
+                            time += temp_duration
+                        MIDIs.addTempo(track,time,tempo)
+                    else:
+                        prevnote = scales[c][data[val]]
+                        MIDIs.addNote(track, channel, prevnote, time, temp_duration, volume)
+                        time += temp_duration
             except:
-                print("Note Error : '" + data[val] + "'")
+                if data[val] != ']' and data[val] != "[" and data[val] != "exempt":
+                    print("Note Error : '" + data[val] + "'")
 
 
 
