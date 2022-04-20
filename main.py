@@ -2,15 +2,19 @@
 import argparse
 parser = argparse.ArgumentParser(description='Enter file name')
 parser.add_argument('-f')
+parser.add_argument('-o')
 args = parser.parse_args()
 file_tr = 'file.txt'
 if args.f != None:
     file_tr = args.f
+ofl = '_'
+if args.o != None:
+    ofl = args.o
 
 print("A prerequisite to run this code is the python library 'midiutil'")
 print("If not already done, run 'pip install midiutil'")
 
-def nextpass(a, b, k):
+def nextpass(a, b, k, ofl):
     ftr = open(file_tr, "r")
     data = ftr.read().split()
     ftr.close()
@@ -23,6 +27,9 @@ def nextpass(a, b, k):
     note += (k_NOTES_IN_OCTAVE * int(b))
 
     diff = note-48
+
+    if ofl == '_':
+        ofl = a + b + "_oct_" + k + "_output.mid"
 
 
     from midiutil import MIDIFile
@@ -61,6 +68,8 @@ def nextpass(a, b, k):
 
     prevnote = 1
     for val in range(len(data)):
+        if data[val] == ',':
+            data[val] = '_'
         if str(data[val]).isnumeric():
             tempo = int(data[val])
             MIDIs.addTempo(track,time, tempo)
@@ -99,26 +108,26 @@ def nextpass(a, b, k):
 
 
 
-    with open("output.mid", "wb") as opf:
+    with open(str(ofl), "wb") as opf:
         MIDIs.writeFile(opf)
     print("--------")
     print("DONE ==> check output.mid")
 
 
-def getInput():
+def getInput(ofl):
     k = input("Enter Scale Root: ")
     k = str(k).upper()
     r = input("Enter Octave: ")
     types = input("Choose instrument (violin, flute, recorder, or piano): ").lower()
     print("--------")
     if str(k).upper() in ["C", "D", "E", "F", "G", "A", "B"] and r.isnumeric():
-        nextpass(k, r, types)
+        nextpass(k, r, types, ofl)
     else:
         print("Invalid!")
         print("--------")
         getInput()
 
 print("--------")
-getInput()
+getInput(ofl)
 
 print("--------")
