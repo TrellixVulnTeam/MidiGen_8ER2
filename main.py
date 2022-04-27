@@ -7,6 +7,7 @@ args = parser.parse_args()
 file_tr = 'file.txt'
 if args.f != None:
     file_tr = args.f
+    print("No input file given. Ex: python main.py -f 'filename'")
 ofl = '_'
 if args.o != None:
     ofl = args.o
@@ -29,7 +30,7 @@ def nextpass(a, b, k, ofl):
     diff = note-48
 
     if ofl == '_':
-        ofl = a + b + "_oct_" + k + "_output.mid"
+        ofl = str(a) + str(b) + "_oct_" + str(k) + "_output.mid"
 
 
     from midiutil import MIDIFile
@@ -94,9 +95,16 @@ def nextpass(a, b, k, ofl):
                         val = iter
                         MIDIs.addTempo(track,time,tempo*len(kls))
                         for elem in kls:
-                            prevnote = scales[c][elem]
-                            MIDIs.addNote(track, channel, prevnote, time, temp_duration, volume)
-                            time += temp_duration
+                            if elem != "_":
+                                temp_duration = duration
+                                if data[val+1] == '_':
+                                    iter = val+1
+                                    while data[iter] == '_':
+                                        iter += 1
+                                        temp_duration += 1
+                                prevnote = scales[c][elem]
+                                MIDIs.addNote(track, channel, prevnote, time, temp_duration, volume)
+                                time += temp_duration
                         MIDIs.addTempo(track,time,tempo)
                     else:
                         prevnote = scales[c][data[val]]
@@ -117,11 +125,12 @@ def nextpass(a, b, k, ofl):
 def getInput(ofl):
     k = input("Enter Scale Root: ")
     k = str(k).upper()
-    r = input("Enter Octave: ")
+    r = input("Enter Octave (low : L, middle : M, high : H): ")
+    ls = [".", ".", ".", "L", "M", "H"]
     types = input("Choose instrument (violin, flute, recorder, or piano): ").lower()
     print("--------")
-    if str(k).upper() in ["C", "D", "E", "F", "G", "A", "B"] and r.isnumeric():
-        nextpass(k, r, types, ofl)
+    if str(k).upper() in ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'] and r in ls:
+        nextpass(k, ls.index(r), types, ofl)
     else:
         print("Invalid!")
         print("--------")
