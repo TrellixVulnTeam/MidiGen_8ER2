@@ -1,0 +1,74 @@
+{
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.64",
+    "@electron-forge/maker-deb": "^6.0.0-beta.64",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.64",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.64",
+    "@electron-forge/maker-zip": "^6.0.0-beta.64",
+    "electron": "^19.0.6"
+  },
+  "name": "electromidigen",
+  "productName": "ElectroMidiGen",
+  "version": "1.0.1",
+  "description": "N/A",
+  "main": "index.js",
+  "author": "Vyaas",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "build-installer": "electron-builder"
+  },
+  "build": {
+    "appId": "ElectroMidiGen",
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    },
+    "mac": {
+      "category": "public.app-category.developer-tools",
+      "type": "distribution"
+    },
+    "nsis": {
+      "uninstallDisplayName": "ElectroMidiGen - Reinstall",
+      "oneClick": false,
+      "license": "license.md",
+      "installerIcon": "icon.ico",
+      "allowToChangeInstallationDirectory": true
+    }
+  },
+  "dependencies": {
+    "@electron/remote": "^2.0.8",
+    "electron-squirrel-startup": "^1.0.0",
+    "pdfkit": "^0.13.0"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "ElectroMidiGen"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
+  }
+}
