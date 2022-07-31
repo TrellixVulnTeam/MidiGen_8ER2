@@ -47,9 +47,9 @@ background-image: url("pic.jpg");
 }
 
 .littlebutton {
-  background-color: gold;
+  background-color: #50505070;
   border: none;
-  color: black;
+  color: rgb(7, 234, 246);
   padding: 9px 14px;
   text-align: center;
   text-decoration: none;
@@ -71,15 +71,15 @@ background-image: url("pic.jpg");
   position:absolute;
   top: 660px;
   right: 20px;
-  border: 5px solid rgb(245, 12, 226);
-  background-color: rgba(246, 12, 226, 0.2);
+  border: 5px solid rgb(245, 12, 82);
+  background-color: rgba(245, 12, 82, 0.2);
 }
 .thimpod{
   position:absolute;
   top: 460px;
   right: 20px;
-  border: 5px solid rgb(12, 16, 245);
-  background-color: rgba(12, 16, 245, 0.2);
+  border: 5px solid rgb(245, 12, 82);
+  background-color: rgba(245, 12, 82, 0.2);
 }
 .slidecontainer {
   width: 100%;
@@ -138,7 +138,7 @@ form {
 <body>
 
 <div class=center id="newcent">
-<h1>ElectroMidiGen v1.0.01 BETA</h1><br>
+<h1>MidiGen v1.0.01 BETA</h1><br>
 <br>
 <p>If you did not hear the testing sound, please check your audio settings, or restart the app. </p>
 <p>Open the help menu with the "?" at the bottom right of your screen.</p>
@@ -2610,9 +2610,13 @@ S^ N D P M G R S`
 </div>
 <div name="Libs" class="theLibDiv">
     <p style="color:rgb(12, 245, 210)">Music Library</p>
-    <input type="button" value="Scale ([For Testing])" class="littlebutton" onclick="Scale()"> <br> <br>
+    <p style="font-size:8px"></p>
+    <p style="color:red; font-size:12px">BETA tests</p>
+    <input type="button" value="Scale [Testing]" class="littlebutton" onclick="Scale()"> <br> <br>
+    <p style="color:red; font-size:12px">Varnams</p>
+    <input type="button" value="Ninnu Kori [***]" class="littlebutton" onclick="NinnoKoi()"> <br> <br>
     <input type="button" value="Ramana Vibho" class="littlebutton" onclick="RamanaVibho()"> <br> <br>
-    <input type="button" value="Ninnu Kori" class="littlebutton" onclick="NinnoKoi()"> <br> <br>
+    <p style="color:red; font-size:12px">Other Patterns</p>
     <input type="button" value="Dhattu varisai (1)" class="littlebutton" onclick="DhattuOne()"> <br> <br>
     <input type="button" value="Dhattu varisai (2)" class="littlebutton" onclick="DhattuTwo()"> <br> <br>
     <input type="button" value="Sarali varisai (1)" class="littlebutton" onclick="Sarali(1)"> <br> <br>
