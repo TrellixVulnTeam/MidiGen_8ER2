@@ -89,7 +89,7 @@ background-image: url("pic.jpg");
   -webkit-appearance: none;
   width: 100%;
   height: 25px;
-  background: #d3d3d3;
+  background: #515151;
   outline: none;
   opacity: 0.7;
   -webkit-transition: .2s;
@@ -105,14 +105,14 @@ background-image: url("pic.jpg");
   appearance: none;
   width: 25px;
   height: 25px;
-  background: #04AA6D;
+  background: #04aa23;
   cursor: pointer;
 }
 
 .slider::-moz-range-thumb {
   width: 25px;
   height: 25px;
-  background: #04AA6D;
+  background: #04aa23;
   cursor: pointer;
 }
 
@@ -324,6 +324,7 @@ form {
         constructor(data) {
             getOrCreateContext();
             this._data_ = data.trim().split(/(\s+)/)
+            this._data_.push('STOP')
             this._char = data[0]
 
             this.tempo = document.getElementById("tempo__").value
@@ -373,8 +374,11 @@ form {
                         console.log(e)
                     }
                     console.log(this._data_[i].length)
-                    if (this._data_[i].length < 3) {
+                    if (this._data_[i].length < 3 && this._data_[i]!='(' && this._data_[i]!=')')   {
                         i_collective += this.temp_durarion
+                    }
+                    if (this._data_[i]=='STOP') {
+                        this._notelist.push(new Note('E', i_collective, this._data_[i]))
                     }
                 }
             }
@@ -509,7 +513,7 @@ form {
     <input type="text" id="ctragam" value="Ragam/Scale"> <br> <br>
     <textarea name="ptrns" id="ptrns" cols="100" rows="15" width="60%" value="Patterns to play"></textarea> 
     <input type="hidden" id="pgbar" value="Progress Bar" style="width:45%" class="bbbin" disabled="true">
-    <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+    <input type="range" min="1" max="100" value="50" class="slider" id="myRange" style="width:60%">
     <p>--------------------------------------------------------------</p><br>
     <span>
     <select id="nt" name="Note" style="width:200px;height:50px">
@@ -582,7 +586,7 @@ form {
         document.getElementById("abbde").value = "arabhi (full)"
         document.getElementById("ptrns").value = `R _ _ _ R P M G R _ S R S _ S n d _ R S R _ _
 S R M G R M P _ M P D _ P D D _ S^ D _ P M P D _ P M _ G R S
-R P M G R _ _ _ R ( ( - ) R P ) M G R _ S R S _ S n d _ R S R _
+R P M G R _ _ _ R ( R P ) M G R _ S R S _ S n d _ R S R _
 S R M G R M P _ M P D _ P D D _ S^ D _ P M P D _ P M _ G R S
 
 R M ( R M P _ M P D _ P D S^ ) D S^ D _ P M P _ D _ P M _ G R S
