@@ -7,8 +7,8 @@ background-image: url("pic.jpg");
 }
 .center {
   text-align: center;
-  border: 18px solid rgb(12, 245, 210);
-  color: lightskyblue;
+  border: 18px solid orangered;
+  color: orangered;
   font-family: "Lucida Console", fantasy;
   height: 900vh;
   background-position: center;
@@ -22,9 +22,9 @@ background-image: url("pic.jpg");
     margin-right: 5%;
 }
 .button {
-  background-color: #4CAF50;
+  background-color: #50505070;
+  color: skyblue;
   border: none;
-  color: white;
   padding: 18px 64px;
   text-align: center;
   text-decoration: none;
@@ -32,11 +32,13 @@ background-image: url("pic.jpg");
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
+  font-weight: bold;
+  font-family: monospace;
 }
 .hbut {
   background-color: #0fa5ea2e;
   border: none;
-  color: white;
+  color: lightskyblue;
   padding: 30px 36px;
   text-align: center;
   text-decoration: none;
@@ -73,6 +75,7 @@ background-image: url("pic.jpg");
   right: 20px;
   border: 5px solid rgb(245, 12, 82);
   background-color: rgba(245, 12, 82, 0.2);
+  width: 220px;
 }
 .thimpod{
   position:absolute;
@@ -80,6 +83,7 @@ background-image: url("pic.jpg");
   right: 20px;
   border: 5px solid rgb(245, 12, 82);
   background-color: rgba(245, 12, 82, 0.2);
+  width: 220px;
 }
 .slidecontainer {
   width: 100%;
@@ -126,8 +130,10 @@ input[type=text] {
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
-  border: 2px solid red;
-  border-radius: 4px;
+  border: 2px solid ivory;
+  border-radius: 20px;
+  align-items: center;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 form {
     display: inline-block;
@@ -138,11 +144,11 @@ form {
 <body>
 
 <div class=center id="newcent">
-<h1>MidiGen v1.0.01 BETA</h1><br>
+<h1 style="color:orange; font-weight: 500; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-style: oblique; font-size:90px">MidiGen v1.0.01 BETA</h1><br>
 <br>
 <p>If you did not hear the testing sound, please check your audio settings, or restart the app. </p>
-<p>Open the help menu with the "?" at the bottom right of your screen.</p>
-<input type="button" value="Play Testing sound (Click on this!)" class="button" id="test_sound"> <br>
+<p>Open the help menu with the "?" icon at the bottom right of your screen.</p><br>
+<input type="button" value="Test Audio: 🔊" class="button" id="test_sound"> <br>
 
 
 <script>
@@ -161,7 +167,7 @@ form {
         oscillator.connect(volume);
 
         volume.connect(context.destination);
-        volume.gain.value = 0.5;
+        volume.gain.value = 0.7;
         //oscillator.connect(context.destination);
     }
     return context;
@@ -169,7 +175,8 @@ form {
     }
 
     var isStarted = false;
-    function playSound(frequency, target=0, i=0, svolume=0.5) {
+    function playSound(frequency, target=0, i=0, svolume=(document.getElementById("mRI").value/100)) {
+    console.log('vol'+(document.getElementById("mRI").value/100))
     if (!soundturnoff) {
         getOrCreateContext();
         volume.gain.value = svolume;
@@ -503,17 +510,16 @@ form {
 </script>
 
 
-<br> <p>Below, enter the patterns to be played. The relative speed can be changed at anytime in the middle.</p>
-<p>Use a '\' or '-' to mark a break or the ending. Use '|' as talam markers.</p>
+<br>
 <form>
     <input type="text" id="cttitle" value="Title">
     <input type="text" id="ctauthor" value="Author"> <br>
     <input type="text" id="cttempo" value="Speed for Export">
     <input type="text" id="cttalam" value="Talam">
     <input type="text" id="ctragam" value="Ragam/Scale"> <br> <br>
-    <textarea name="ptrns" id="ptrns" cols="100" rows="15" width="60%" value="Patterns to play"></textarea> 
+    <textarea name="ptrns" id="ptrns" cols="100" rows="15" width="60%" text="Patterns to play"></textarea> 
     <input type="hidden" id="pgbar" value="Progress Bar" style="width:45%" class="bbbin" disabled="true">
-    <input type="range" min="1" max="100" value="50" class="slider" id="myRange" style="width:60%">
+    <input type="range" min="1" max="100" value="70" class="slider" id="mRI" style="width:60%">
     <p>--------------------------------------------------------------</p><br>
     <span>
     <select id="nt" name="Note" style="width:200px;height:50px">
@@ -535,8 +541,8 @@ form {
     <option value="5">4</option>
     <option value="6">5</option>
     </select>
-    <p>^ Starting Point / Octave | Ragam (Scale) / Tempo v</p>
     <span id="oldcent"></span>
+    <p>👆🏻 Starting Point / Octave / Ragam (Scale) | Tempo 👇🏻</p>
     </span>
     <input type="text" id="tempo__" value="120">
     <input type="button" value="Start Playback" class="button" id="test_sound" onclick="startPlayback()"> 
@@ -567,7 +573,7 @@ form {
 
 <script>
     function helpMenuShow() {
-        alert(`This is the ElectroMidiGen Help Menu\n   > If your window has frozen, minimize and re-open. If that doesn't work, restart the app.\n   > Patterns: \n        -- As notes, use 'm p d n . . . R G M P . . . S^ R^ G^' as relevant to the ragam \n         -- Use '(' and ')' to increase and decrease the speed\n   > If the audio does not start, check your settings, and make sure all tabs at the bottom are filled out\n\n Please report any issues on Github and we will fix it! \n Designed and Programmed by Vyaas with expert advice from Ashok Sir`)
+        alert(`This is the ElectroMidiGen Help Menu\n   > If your window has frozen, minimize and re-open. If that doesn't work, restart the app.\n   > Patterns: \n        -- As notes, use 'm p d n . . . R G M P . . . S^ R^ G^' as relevant to the ragam \n         -- Use '(' and ')' to increase and decrease the speed\n           -- Use '-' or '/' to signify a break and use '|' for talam markers\n> If the audio does not start, check your settings, and make sure all tabs at the bottom are filled out\n> To adjust the volume move the slider beneath the text box\n> Make sure all the fields above the text box are filled out before export\n> To import, make sure to specify the full file path\n  - Win Example: C:\\Users\\username\\filedirectory\\examplefile.efmgt\n  - Unix example: Home Dir/filedirectory/examplefile.efmgt\n\n Please report any issues on Github and we will fix it! \n Designed and Programmed by Vyaas with expert advice from Ashok Sir`)
     }
 </script>
 <div class="rightal">
@@ -763,12 +769,12 @@ S^ N D P M G R S`
 </div>
 <div name="Import" class="thimpod">
     <p style="color:red">Import textfile</p>
-    <input type="text" id="thimpod" value="full path to file(.efmgt)" style="width:80%"> <br>
+    <input type="text" id="thimpod" value="full path to file(.efmgt)" style="width:80%; border-radius: 0; border-color: red;"> <br>
     <input type="button" value="Import" class="littlebutton" id="iwanttoimport"><br> <br>
 </div>
 <div name="Export" class="thexpod">
     <p style="color:red">Export Text to File</p>
-    <input type="text" id="thexpod" value="filename(.efmgt)" style="width:80%"> <br>
+    <input type="text" id="thexpod" value="filename(.efmgt)" style="width:80%; border-radius: 0; border-color: red;"> <br>
     <input type="button" value="Export" class="littlebutton" id="iwanttoexport"><br> <br>
 </div>
 </div>
