@@ -3,12 +3,12 @@
 <head>
 <style>
 body {
-background-image: url("pic.jpg");
+background-image: url("icon.png");
 }
 .center {
   text-align: center;
-  border: 18px solid orangered;
-  color: orangered;
+  border: 18px solid rgb(255, 128, 0);
+  color: rgb(255, 128, 0);
   font-family: "Lucida Console", fantasy;
   height: 900vh;
   background-position: center;
@@ -65,25 +65,28 @@ background-image: url("pic.jpg");
   position:absolute;
   top: 400px;
   left: 30px;
-  border: 5px solid rgb(12, 245, 24);
-  background-color: rgba(12, 245, 24, 0.2);
+  border: 5px solid red;
 }
 
 .thexpod{
   position:absolute;
+  color: rgb(7, 234, 246);
   top: 660px;
   right: 20px;
-  border: 5px solid rgb(245, 12, 82);
-  background-color: rgba(245, 12, 82, 0.2);
+  border: 5px solid red;
   width: 220px;
+  border-radius: 20px;
+  color: rgb(7, 234, 246);
 }
 .thimpod{
   position:absolute;
+  color: rgb(7, 234, 246);
   top: 460px;
   right: 20px;
-  border: 5px solid rgb(245, 12, 82);
-  background-color: rgba(245, 12, 82, 0.2);
+  border: 5px solid red;
   width: 220px;
+  border-radius: 20px;
+  color: rgb(7, 234, 246);
 }
 .slidecontainer {
   width: 100%;
@@ -122,7 +125,7 @@ background-image: url("pic.jpg");
 
 .bbbin {
     border: 2px solid blue;
-    background-color: rgba(255, 251, 0, 0.8);
+    background-color: rgba(0, 42, 255, 0.8);
 }
 
 input[type=text] {
@@ -140,11 +143,12 @@ form {
 }
 
 </style>
+<link rel=stylesheet href=styles.css id=stylesheetpage>
 </head>
 <body>
 
 <div class=center id="newcent">
-<h1 style="color:orange; font-weight: 500; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-style: oblique; font-size:90px">MidiGen v1.0.01 BETA</h1><br>
+<h1 style="color:rgb(255, 128, 0); font-weight: 500; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; font-style: oblique; font-size:90px">MidiGen v1.0.01 BETA</h1><br>
 <br>
 <p>If you did not hear the testing sound, please check your audio settings, or restart the app. </p>
 <p>Open the help menu with the "?" icon at the bottom right of your screen.</p><br>
@@ -741,39 +745,39 @@ S^ N D P M G R S`
 
 </div>
 <div name="Libs" class="theLibDiv">
-    <p style="color:rgb(12, 245, 210)">Music Library</p>
+    <h4 style="color:rgb(255, 128, 0)">Music Library</p>
     <p style="font-size:8px"></p>
     <p style="color:red; font-size:12px">BETA tests</p>
-    <input type="button" value="Scale [Testing]" class="littlebutton" onclick="Scale()"> <br> <br>
+    <input type="button" value="Scale [Testing]" class="littlebutton" onclick="Scale()" style="color:rgb(255, 128, 0)"> <br> <br>
     <p style="color:red; font-size:12px">Varnams</p>
-    <input type="button" value="Ninnu Kori [***]" class="littlebutton" onclick="NinnoKoi()"> <br> <br>
-    <input type="button" value="Ramana Vibho" class="littlebutton" onclick="RamanaVibho()"> <br> <br>
+    <input type="button" value="Ninnu Kori [***]" class="littlebutton" onclick="NinnoKoi()" style="color:rgb(255, 128, 0)"> <br> <br>
+    <input type="button" value="Ramana Vibho" class="littlebutton" onclick="RamanaVibho()" style="color:rgb(255, 128, 0)"> <br> <br>
     <p style="color:red; font-size:12px">Other Patterns</p>
-    <input type="button" value="Dhattu varisai (1)" class="littlebutton" onclick="DhattuOne()"> <br> <br>
-    <input type="button" value="Dhattu varisai (2)" class="littlebutton" onclick="DhattuTwo()"> <br> <br>
-    <input type="button" value="Sarali varisai (1)" class="littlebutton" onclick="Sarali(1)"> <br> <br>
-    <input type="button" value="Sarali varisai (2)" class="littlebutton" onclick="Sarali(2)"> <br> <br>
-    <input type="button" value="Sarali varisai (3)" class="littlebutton" onclick="Sarali(3)"> <br> <br>
-    <input type="button" value="Sarali varisai (4)" class="littlebutton" onclick="Sarali(4)"> <br> <br>
-    <input type="button" value="Sarali varisai (5)" class="littlebutton" onclick="Sarali(5)"> <br> <br>
-    <input type="button" value="Sarali varisai (6)" class="littlebutton" onclick="Sarali(6)"> <br> <br>
-    <input type="button" value="Sarali varisai (7)" class="littlebutton" onclick="Sarali(7)"> <br> <br>
-    <input type="button" value="Sarali varisai (8)" class="littlebutton" onclick="Sarali(8)"> <br> <br>
-    <input type="button" value="Sarali varisai (9)" class="littlebutton" onclick="Sarali(9)"> <br> <br>
-    <input type="button" value="Sarali varisai (10)" class="littlebutton" onclick="Sarali(10)"> <br> <br>
-    <input type="button" value="Sarali varisai (11)" class="littlebutton" onclick="Sarali(11)"> <br> <br>
-    <input type="button" value="Sarali varisai (12)" class="littlebutton" onclick="Sarali(12)"> <br> <br>
-    <input type="button" value="Sarali varisai (13)" class="littlebutton" onclick="Sarali(13)"> <br> <br>
-    <input type="button" value="Sarali varisai (14)" class="littlebutton" onclick="Sarali(14)"> <br> <br>
+    <input type="button" value="Dhattu varisai (1)" class="littlebutton" onclick="DhattuOne()" style="color:rgb(255, 128, 0)"> <br> <br>
+    <input type="button" value="Dhattu varisai (2)" class="littlebutton" onclick="DhattuTwo()" style="color:rgb(255, 128, 0)"> <br> <br>
+    <input type="button" value="Sarali varisai (1)" class="littlebutton" onclick="Sarali(1)" style="color:rgb(255, 128, 0)"> <br> <br>
+    <input type="button" value="Sarali varisai (2)" class="littlebutton" onclick="Sarali(2)" style="color:rgb(255, 128, 0)"> <br> <br>
+    <input type="button" value="Sarali varisai (3)" class="littlebutton" onclick="Sarali(3)" style="color:rgb(255, 128, 0)"> <br> <br>
+    <input type="button" value="Sarali varisai (4)" class="littlebutton" onclick="Sarali(4)" style="color:rgb(255, 128, 0)"> <br> <br>
+    <input type="button" value="Sarali varisai (5)" class="littlebutton" onclick="Sarali(5)" style="color:rgb(255, 128, 0)"> <br> <br>
+    <input type="button" value="Sarali varisai (6)" class="littlebutton" onclick="Sarali(6)" style="color:rgb(255, 128, 0)"> <br> <br>
+    <input type="button" value="Sarali varisai (7)" class="littlebutton" onclick="Sarali(7)" style="color:rgb(255, 128, 0)"> <br> <br>
+    <input type="button" value="Sarali varisai (8)" class="littlebutton" onclick="Sarali(8)" style="color:rgb(255, 128, 0)"> <br> <br>
+    <input type="button" value="Sarali varisai (9)" class="littlebutton" onclick="Sarali(9)" style="color:rgb(255, 128, 0)"> <br> <br>
+    <input type="button" value="Sarali varisai (10)" class="littlebutton" onclick="Sarali(10)" style="color:rgb(255, 128, 0)"> <br> <br>
+    <input type="button" value="Sarali varisai (11)" class="littlebutton" onclick="Sarali(11)" style="color:rgb(255, 128, 0)"> <br> <br>
+    <input type="button" value="Sarali varisai (12)" class="littlebutton" onclick="Sarali(12)" style="color:rgb(255, 128, 0)"> <br> <br>
+    <input type="button" value="Sarali varisai (13)" class="littlebutton" onclick="Sarali(13)" style="color:rgb(255, 128, 0)"> <br> <br>
+    <input type="button" value="Sarali varisai (14)" class="littlebutton" onclick="Sarali(14)" style="color:rgb(255, 128, 0)"> <br> <br>
     <br> <br>
 </div>
 <div name="Import" class="thimpod">
-    <p style="color:red">Import textfile</p>
+    <p style="color: rgb(255, 128, 0);">Import textfile</p>
     <input type="text" id="thimpod" value="full path to file(.efmgt)" style="width:80%; border-radius: 0; border-color: red;"> <br>
     <input type="button" value="Import" class="littlebutton" id="iwanttoimport"><br> <br>
 </div>
 <div name="Export" class="thexpod">
-    <p style="color:red">Export Text to File</p>
+    <p style="color: rgb(255, 128, 0);">Export Text to File</p>
     <input type="text" id="thexpod" value="filename(.efmgt)" style="width:80%; border-radius: 0; border-color: red;"> <br>
     <input type="button" value="Export" class="littlebutton" id="iwanttoexport"><br> <br>
 </div>
