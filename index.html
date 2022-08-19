@@ -65,15 +65,13 @@ background-image: url("icon.png");
   position:absolute;
   top: 400px;
   left: 30px;
-  border: 5px solid red;
 }
 
 .thexpod{
   position:absolute;
   color: rgb(7, 234, 246);
   top: 660px;
-  right: 20px;
-  border: 5px solid red;
+  right: 30px;
   width: 220px;
   border-radius: 20px;
   color: rgb(7, 234, 246);
@@ -82,8 +80,7 @@ background-image: url("icon.png");
   position:absolute;
   color: rgb(7, 234, 246);
   top: 460px;
-  right: 20px;
-  border: 5px solid red;
+  right: 30px;
   width: 220px;
   border-radius: 20px;
   color: rgb(7, 234, 246);
@@ -112,14 +109,14 @@ background-image: url("icon.png");
   appearance: none;
   width: 25px;
   height: 25px;
-  background: #04aa23;
+  background: rgb(255, 128, 0);
   cursor: pointer;
 }
 
 .slider::-moz-range-thumb {
   width: 25px;
   height: 25px;
-  background: #04aa23;
+  background: rgb(255, 128, 0);
   cursor: pointer;
 }
 
@@ -171,7 +168,7 @@ form {
         oscillator.connect(volume);
 
         volume.connect(context.destination);
-        volume.gain.value = 0.7;
+        volume.gain.value = 1;
         //oscillator.connect(context.destination);
     }
     return context;
@@ -179,7 +176,7 @@ form {
     }
 
     var isStarted = false;
-    function playSound(frequency, target=0, i=0, svolume=(document.getElementById("mRI").value/100)) {
+    function playSound(frequency, target=0, i=0, svolume=((document.getElementById("mRI").value+0.5)/100)) {
     console.log('vol'+(document.getElementById("mRI").value/100))
     if (!soundturnoff) {
         getOrCreateContext();
@@ -291,7 +288,7 @@ form {
     }
 
     class Note {
-        constructor(anote, i, rnote='S', vol=0.7) {
+        constructor(anote, i, rnote='S', vol=((document.getElementById("mRI").value+0.5)/100)) {
             this._note = anote;
             this.actualnote = rnote;
             //console.log("a++" + this.actualnote)
@@ -416,7 +413,7 @@ form {
                 if (this._notelist[i].isnote) {
                     console.log(noteToFreq(this._notelist[i]._note))
                     try {
-                    playSound(noteToFreq(this._notelist[i]._note), 0, this._notelist[i]._noteindex, this._notelist[i]._vol)
+                    playSound(noteToFreq(this._notelist[i]._note), 0, this._notelist[i]._noteindex, 1)//this._notelist[i]._vol)
                     } catch { try { playSound(0, 0, this._notelist[i-1]._noteindex+this.fixed_durarion, 0.1) } catch {}}
                     try {
                         var offsetforplay = 1/((0.5+40/this.tempo)*this.tempo/60)
@@ -523,7 +520,7 @@ form {
     <input type="text" id="ctragam" value="Ragam/Scale"> <br> <br>
     <textarea name="ptrns" id="ptrns" cols="100" rows="15" width="60%" text="Patterns to play"></textarea> 
     <input type="hidden" id="pgbar" value="Progress Bar" style="width:45%" class="bbbin" disabled="true">
-    <input type="range" min="1" max="100" value="70" class="slider" id="mRI" style="width:60%">
+    <input type="range" min="1" max="100" value="25" class="slider" id="mRI" style="width:60%">
     <p>--------------------------------------------------------------</p><br>
     <span>
     <select id="nt" name="Note" style="width:200px;height:50px">
@@ -750,7 +747,7 @@ S^ N D P M G R S`
     <p style="color:red; font-size:12px">BETA tests</p>
     <input type="button" value="Scale [Testing]" class="littlebutton" onclick="Scale()" style="color:rgb(255, 128, 0)"> <br> <br>
     <p style="color:red; font-size:12px">Varnams</p>
-    <input type="button" value="Ninnu Kori [***]" class="littlebutton" onclick="NinnoKoi()" style="color:rgb(255, 128, 0)"> <br> <br>
+    <input type="button" value="Ninnu Kori ****" class="littlebutton" onclick="NinnoKoi()" style="color:rgb(255, 128, 0)"> <br> <br>
     <input type="button" value="Ramana Vibho" class="littlebutton" onclick="RamanaVibho()" style="color:rgb(255, 128, 0)"> <br> <br>
     <p style="color:red; font-size:12px">Other Patterns</p>
     <input type="button" value="Dhattu varisai (1)" class="littlebutton" onclick="DhattuOne()" style="color:rgb(255, 128, 0)"> <br> <br>
